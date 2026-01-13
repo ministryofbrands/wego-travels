@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Globe, Plane } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useTravel } from '../context/TravelContext';
 
 export function Navbar() {
+  const { travelType, setTravelType } = useTravel();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -60,45 +62,44 @@ export function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2 group">
-              <img
-                src="/logo/76293549293501.png"
-                alt="Wego Travels Logo"
-                className="h-10 md:h-14 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
-              />
-              <span className={`text-2xl font-bold tracking-tighter ${textColor}`}>
-                Wego<span className="text-orange-500">Travels</span>
-              </span>
-            </Link>
-
-            {/* Desktop Nav */}
-            <div className="hidden lg:flex items-center justify-center flex-1 absolute left-1/2 transform -translate-x-1/2">
-              <div className="flex space-x-8">
-                {navLinks.map(link => {
-                  const isActive = link.path === '/'
-                    ? location.pathname === '/'
-                    : location.pathname.startsWith(link.path);
-                  return (
-                    <Link
-                      key={link.name}
-                      to={link.path}
-                      className={`${isActive ? activeColor : textColor} hover:text-[#F48A34] transition-colors font-bold text-xs uppercase tracking-widest relative group`}
-                    >
-                      {link.name}
-                      {/* Underline indicator for active desktop links */}
-                      {isActive && (
-                        <motion.div
-                          layoutId="navUnderline"
-                          className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#F48A34]"
-                        />
-                      )}
-                    </Link>
-                  );
-                })}
-              </div>
+            <div className="flex items-center group">
+              <Link to="/" className="flex items-center gap-2">
+                <img
+                  src="/logo/76293549293501.png"
+                  alt="Wego Travels Logo"
+                  className="h-10 md:h-14 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                />
+                <span className={`text-2xl font-bold tracking-tighter ${textColor}`}>
+                  Wego<span className="text-orange-500">Travels</span>
+                </span>
+              </Link>
             </div>
 
-            {/* Contact Us Button - Desktop */}
+            {/* Desktop Nav */}
+            <div className="hidden lg:flex items-center justify-center space-x-6">
+              {navLinks.map(link => {
+                const isActive = link.path === '/'
+                  ? location.pathname === '/'
+                  : location.pathname.startsWith(link.path);
+                return (
+                  <Link
+                    key={link.name}
+                    to={link.path}
+                    className={`${isActive ? activeColor : textColor} hover:text-[#F48A34] transition-colors font-bold text-[10px] xl:text-xs uppercase tracking-widest relative group`}
+                  >
+                    {link.name}
+                    {isActive && (
+                      <motion.div
+                        layoutId="navUnderline"
+                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#F48A34]"
+                      />
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Right side: Contact Button */}
             <div className="hidden lg:flex items-center">
               <Link to="/contact">
                 <button className={`${isContactActive ? 'bg-[#0167B2] ring-4 ring-[#0167B2]/20' : 'bg-orange-500 hover:bg-orange-600'} text-white px-6 py-2.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg flex items-center gap-2`}>
@@ -148,6 +149,33 @@ export function Navbar() {
         </div>
 
         <div className="flex-1 px-6 space-y-2 overflow-y-auto">
+          {/* Mobile Tour Type Selector */}
+          <div className="py-4 border-b border-gray-100">
+            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-4">Tour Category</span>
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                onClick={() => {
+                  setTravelType('Inbound');
+                  setIsMobileMenuOpen(false);
+                }}
+                className={`flex flex-col items-center gap-2 p-4 rounded-2xl border transition-all ${travelType === 'Inbound' ? 'bg-orange-50 border-orange-200 text-orange-600' : 'bg-gray-50 border-gray-100 text-gray-500'}`}
+              >
+                <Globe size={24} />
+                <span className="text-xs font-bold uppercase tracking-tighter">Inbound</span>
+              </button>
+              <button
+                onClick={() => {
+                  setTravelType('Outbound');
+                  setIsMobileMenuOpen(false);
+                }}
+                className={`flex flex-col items-center gap-2 p-4 rounded-2xl border transition-all ${travelType === 'Outbound' ? 'bg-blue-50 border-blue-200 text-blue-600' : 'bg-gray-50 border-gray-100 text-gray-500'}`}
+              >
+                <Plane size={24} />
+                <span className="text-xs font-bold uppercase tracking-tighter">Outbound</span>
+              </button>
+            </div>
+          </div>
+
           {navLinks.map(link => {
             const isActive = link.path === '/'
               ? location.pathname === '/'

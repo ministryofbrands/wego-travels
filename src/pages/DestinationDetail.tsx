@@ -1,8 +1,9 @@
-import React, { useRef, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useRef, useState, useEffect } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { HeroSlider, SlideData } from '../components/HeroSlider';
 import { Star, Clock, Calendar, ArrowRight, CheckCircle2, ChevronLeft } from 'lucide-react';
+import { useTravel } from '../context/TravelContext';
 
 // Fade In Section Component
 const FadeInSection = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => {
@@ -42,10 +43,12 @@ interface CountryData {
   activities: Activity[];
   packages: Package[];
   backgroundWord: string;
+  type: 'Inbound' | 'Outbound';
 }
 
 const destinationData: Record<string, CountryData> = {
   bali: {
+    type: 'Outbound',
     backgroundWord: 'BALI',
     heroSlides: [
       {
@@ -105,6 +108,7 @@ const destinationData: Record<string, CountryData> = {
     ]
   },
   thailand: {
+    type: 'Outbound',
     backgroundWord: 'THAILAND',
     heroSlides: [
       {
@@ -164,6 +168,7 @@ const destinationData: Record<string, CountryData> = {
     ]
   },
   kerala: {
+    type: 'Outbound',
     backgroundWord: 'KERALA',
     heroSlides: [
       {
@@ -201,6 +206,7 @@ const destinationData: Record<string, CountryData> = {
     ]
   },
   japan: {
+    type: 'Outbound',
     backgroundWord: 'JAPAN',
     heroSlides: [
       {
@@ -230,10 +236,283 @@ const destinationData: Record<string, CountryData> = {
         includes: ['Ryokan Stay', 'Kaiseki Dinner', 'Private Guide', 'Bullet Train Pass']
       }
     ]
+  },
+  ella: {
+    type: 'Inbound',
+    backgroundWord: 'ELLA',
+    heroSlides: [
+      {
+        id: 'ella-1',
+        title: 'Ella',
+        subtitle: 'The Misty Mountains',
+        description: "Experience the breathtaking beauty of Sri Lanka's hill country. A paradise for nature lovers and adventurers alike, where every morning begins with a view of the clouds dancing over the peaks.",
+        image: 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&q=80&w=2000',
+        ctaText: 'View Packages',
+        ctaLink: '#packages-section'
+      },
+      {
+        id: 'ella-2',
+        title: 'Nine Arch Bridge',
+        subtitle: 'Engineering Marvel',
+        description: 'Marvel at the iconic colonial-era railway bridge, an architectural masterpiece tucked away in the lush green jungles of Ella.',
+        image: 'https://images.unsplash.com/photo-1581347692120-f56f34f64d2d?auto=format&fit=crop&q=80&w=2000',
+        ctaText: 'View Packages',
+        ctaLink: '#packages-section'
+      }
+    ],
+    activities: [
+      {
+        title: "Little Adam's Peak Hike",
+        description: 'A manageable hike offering panoramic views of the Ella Gap and surrounding tea plantations.',
+        image: 'https://images.unsplash.com/photo-1563492065599-3520f775eeed?auto=format&fit=crop&q=80&w=1000',
+        duration: '2-3 Hours'
+      },
+      {
+        title: 'Nine Arch Bridge Walk',
+        description: 'Walk along the historic railway track and witness the train passing over the famous arches.',
+        image: 'https://images.unsplash.com/photo-1540206395-6880f94903af?auto=format&fit=crop&q=80&w=1000',
+        duration: '2 Hours'
+      },
+      {
+        title: 'Tea Factory Tour',
+        description: 'Learn the secrets of Ceylon Tea, from plucking the leaves to the final brewing process.',
+        image: 'https://images.unsplash.com/photo-1597484662317-9bd773efdf58?auto=format&fit=crop&q=80&w=1000',
+        duration: '2 Hours'
+      }
+    ],
+    packages: [
+      {
+        name: 'Misty Ella Escape',
+        price: 'From RS 45,000',
+        duration: '3 Days / 2 Nights',
+        description: 'A perfect short getaway to soak in the mountain air and visit the major landmarks.',
+        includes: ['Boutique Villa Stay', 'Daily Breakfast', 'Guided Bridge Walk', 'Tuk-Tuk Transfers']
+      },
+      {
+        name: 'Ella Adventure Quest',
+        price: 'From RS 75,000',
+        duration: '5 Days / 4 Nights',
+        description: 'For those who want to explore deeper: including Ella Rock hike and Rawana Falls abseiling.',
+        includes: ['Luxury Resorts', 'Mountain Guide', 'Waterfall Tours', 'Village Cooking Experience']
+      }
+    ]
+  },
+  sigiriya: {
+    type: 'Inbound',
+    backgroundWord: 'SIGIRIYA',
+    heroSlides: [
+      {
+        id: 'sigiriya-1',
+        title: 'Sigiriya',
+        subtitle: 'The Lion Rock',
+        description: 'Ascend the ancient rock fortress, a UNESCO World Heritage site and an architectural marvel of the ancient world. Witness the fusion of nature and royalty.',
+        image: 'https://images.unsplash.com/photo-1588598116719-c8ad9846a14b?auto=format&fit=crop&q=80&w=2000',
+        ctaText: 'View Packages',
+        ctaLink: '#packages-section'
+      },
+      {
+        id: 'sigiriya-2',
+        title: 'Pidurangala',
+        subtitle: 'The Best Viewpoint',
+        description: 'Climb Pidurangala Rock for the most iconic panoramic view of the Sigiriya fortress at sunrise.',
+        image: 'https://images.unsplash.com/photo-1552423714-272fbdc06ff1?auto=format&fit=crop&q=80&w=2000',
+        ctaText: 'View Packages',
+        ctaLink: '#packages-section'
+      }
+    ],
+    activities: [
+      {
+        title: 'Forthress Climb',
+        description: 'Ascend 1200 steps through the Lion Gate to reach the summit of the rock fortress.',
+        image: 'https://images.unsplash.com/photo-1620619767323-b95a89183081?auto=format&fit=crop&q=80&w=1000',
+        duration: '3-4 Hours'
+      },
+      {
+        title: 'Minneriya Safari',
+        description: 'Witness the great elephant gathering in the nearby Minneriya National Park.',
+        image: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&q=80&w=1000',
+        duration: '4 Hours'
+      },
+      {
+        title: 'Village Safari',
+        description: 'Experience authentic Sri Lankan rural life with a bullock cart ride and traditional lunch.',
+        image: 'https://images.unsplash.com/photo-1580136608079-72029d0de130?auto=format&fit=crop&q=80&w=1000',
+        duration: '3 Hours'
+      }
+    ],
+    packages: [
+      {
+        name: 'Ancient Kingdom Tour',
+        price: 'From RS 55,000',
+        duration: '2 Days / 1 Night',
+        description: 'Explore the majesty of the rock and the surrounding cultural triangle.',
+        includes: ['Eco-Resort Stay', 'Rock Entry Fees', 'Traditional Lunch', 'Private Guide']
+      },
+      {
+        name: 'Sigiriya & Wildlife',
+        price: 'From RS 85,000',
+        duration: '3 Days / 2 Nights',
+        description: 'A perfect blend of ancient history and majestic wildlife encounters.',
+        includes: ['Luxury Glamping', 'Jeep Safari', 'Rock Climb', 'Airport Transfers']
+      }
+    ]
+  },
+  galle: {
+    type: 'Inbound',
+    backgroundWord: 'GALLE',
+    heroSlides: [
+      {
+        id: 'galle-1',
+        title: 'Galle Fort',
+        subtitle: 'Colonial Heritage',
+        description: 'Step back in time at the Galle Fort, where Dutch colonial architecture meets the vibrant culture of the southern coast. A UNESCO World Heritage site known for its charming streets and sunset vistas.',
+        image: 'https://images.unsplash.com/photo-1627664819818-e147d6221422?auto=format&fit=crop&q=80&w=2000',
+        ctaText: 'View Packages',
+        ctaLink: '#packages-section'
+      }
+    ],
+    activities: [
+      {
+        title: 'Rampart Walk',
+        description: 'Walk along the ancient walls of the fort and watch the sunset over the Indian Ocean.',
+        image: 'https://images.unsplash.com/photo-1544211152-ed299eaba386?auto=format&fit=crop&q=80&w=1000',
+        duration: '2 Hours'
+      },
+      {
+        title: 'Whale Watching',
+        description: 'Embark on a boat trip from nearby Mirissa to witness the majestic Blue Whales.',
+        image: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&q=80&w=1000',
+        duration: '5 Hours'
+      }
+    ],
+    packages: [
+      {
+        name: 'Southern Charm',
+        price: 'From RS 40,000',
+        duration: '2 Days / 1 Night',
+        description: 'Experience the romantic and historic atmosphere of the Fort and nearby beaches.',
+        includes: ['Heritage Hotel Stay', 'Fort Walking Tour', 'Seafood Dinner', 'Breakfast']
+      }
+    ]
+  },
+  kandy: {
+    type: 'Inbound',
+    backgroundWord: 'KANDY',
+    heroSlides: [
+      {
+        id: 'kandy-1',
+        title: 'Kandy',
+        subtitle: 'The Sacred City',
+        description: "The spiritual heart of Sri Lanka, home to the sacred Temple of the Tooth. Explore the lush gardens and rich traditions of the island's last royal capital.",
+        image: 'https://images.unsplash.com/photo-1555541624-954f9a7732d2?auto=format&fit=crop&q=80&w=2000',
+        ctaText: 'View Packages',
+        ctaLink: '#packages-section'
+      }
+    ],
+    activities: [
+      {
+        title: 'Temple Visit',
+        description: 'Explore the Temple of the Sacred Tooth Relic and witness the traditional evening rituals.',
+        image: 'https://images.unsplash.com/photo-1588613401502-c9497e289899?auto=format&fit=crop&q=80&w=1000',
+        duration: '2 Hours'
+      },
+      {
+        title: 'Botanical Gardens',
+        description: 'Walk through the Royal Botanical Gardens of Peradeniya, home to thousands of plant species.',
+        image: 'https://images.unsplash.com/photo-1560242374-f239088fd463?auto=format&fit=crop&q=80&w=1000',
+        duration: '3 Hours'
+      }
+    ],
+    packages: [
+      {
+        name: 'Cultural Capital Escape',
+        price: 'From RS 35,000',
+        duration: '2 Days / 1 Night',
+        description: 'A deep dive into the heritage and spirituality of Kandy.',
+        includes: ['Boutique Resort', 'Temple Tickets', 'Cultural Dance Show', 'City Tour']
+      }
+    ]
+  },
+  mirissa: {
+    type: 'Inbound',
+    backgroundWord: 'MIRISSA',
+    heroSlides: [
+      {
+        id: 'mirissa-1',
+        title: 'Mirissa',
+        subtitle: 'The Golden Coast',
+        description: 'Bask in the sun at Mirissa, one of the most beautiful beaches in Sri Lanka. Famous for its crescent-shaped bay, vibrant surf culture, and the chance to see the majestic giants of the ocean.',
+        image: 'https://images.unsplash.com/photo-1579294246064-f63ec25ba5c4?auto=format&fit=crop&q=80&w=2000',
+        ctaText: 'View Packages',
+        ctaLink: '#packages-section'
+      }
+    ],
+    activities: [
+      {
+        title: 'Whale Watching',
+        description: 'Set sail in the early morning to spot Blue Whales and playful dolphins in their natural habitat.',
+        image: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&q=80&w=1000',
+        duration: '4-5 Hours'
+      },
+      {
+        title: 'Coconut Tree Hill',
+        description: 'Visit the most photographed spot in Mirissa for stunning views of the ocean and sunset.',
+        image: 'https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?auto=format&fit=crop&q=80&w=1000',
+        duration: '1 Hour'
+      }
+    ],
+    packages: [
+      {
+        name: 'Tropical Bliss',
+        price: 'From RS 30,000',
+        duration: '2 Days / 1 Night',
+        description: 'Perfect for beach lovers and ocean enthusiasts.',
+        includes: ['Beachfront Resort', 'Whale Watching Tour', 'Surf Lesson', 'Seafood BBQ']
+      }
+    ]
+  },
+  'nuwara-eliya': {
+    type: 'Inbound',
+    backgroundWord: 'NUWARA ELIYA',
+    heroSlides: [
+      {
+        id: 'ne-1',
+        title: 'Nuwara Eliya',
+        subtitle: 'Little England',
+        description: 'Tucked away in the cool highlands, Nuwara Eliya is a colonial-era retreat surrounded by emerald green tea estates and cascading waterfalls.',
+        image: 'https://images.unsplash.com/photo-1560242374-f239088fd463?auto=format&fit=crop&q=80&w=2000',
+        ctaText: 'View Packages',
+        ctaLink: '#packages-section'
+      }
+    ],
+    activities: [
+      {
+        title: 'Gregory Lake',
+        description: 'Enjoy a peaceful boat ride or a pony ride along the shores of the beautiful Gregory Lake.',
+        image: 'https://images.unsplash.com/photo-1549643276-fdf2fab574f5?auto=format&fit=crop&q=80&w=1000',
+        duration: '2 Hours'
+      },
+      {
+        title: 'Horton Plains',
+        description: "Hike through the Horton Plains National Park to witness the dramatic 880m drop at World's End.",
+        image: 'https://images.unsplash.com/photo-1517203649514-6014ca925b6a?auto=format&fit=crop&q=80&w=1000',
+        duration: '5-6 Hours'
+      }
+    ],
+    packages: [
+      {
+        name: 'Highland Retreat',
+        price: 'From RS 38,000',
+        duration: '2 Days / 1 Night',
+        description: 'Experience the cool climate and colonial charm of the hills.',
+        includes: ['Colonial Hotel Stay', 'Tea Estate Tour', 'Lake Boat Ride', 'Breakfast']
+      }
+    ]
   }
 };
 
 const defaultData: CountryData = {
+  type: 'Outbound',
   backgroundWord: 'EXPLORE',
   heroSlides: [
     {
@@ -251,8 +530,17 @@ const defaultData: CountryData = {
 
 export function DestinationDetail() {
   const { id } = useParams<{ id: string }>();
+  const { travelType } = useTravel();
+  const navigate = useNavigate();
+
   const data = id && destinationData[id] ? destinationData[id] : defaultData;
   const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    if (id && destinationData[id] && destinationData[id].type !== travelType) {
+      navigate('/destinations');
+    }
+  }, [id, travelType, navigate]);
 
   // Triple activities for seamless loop
   const loopActivities = [...data.activities, ...data.activities, ...data.activities];

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Mail, Phone, MapPin, Send, MessageSquare, Clock, Globe, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Clock, Globe, CheckCircle2, AlertCircle, Loader2, ChevronDown } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
 
 // Fade In Section Component (Matching About/Services)
@@ -52,7 +52,7 @@ export function Contact() {
           email: formData.email,
           interest: formData.interest,
           message: formData.message,
-          subject: `New Inquiry from ${formData.fullName}`, 
+          subject: `New Inquiry from ${formData.fullName}`,
           from_name: "Wego Travels Website",
           to_email: "ilankoonhansani@gmail.com"
         })
@@ -213,7 +213,7 @@ export function Contact() {
                         name="fullName"
                         value={formData.fullName}
                         onChange={handleChange}
-                        placeholder="John Doe"
+                        placeholder="Full Name"
                         required
                         disabled={isSubmitting}
                         className="w-full px-8 py-4 bg-white border border-gray-100 rounded-2xl focus:ring-2 focus:ring-[#F48A34] focus:border-transparent outline-none transition-all shadow-sm disabled:opacity-50"
@@ -226,7 +226,7 @@ export function Contact() {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="john@example.com"
+                        placeholder="email@example.com"
                         required
                         disabled={isSubmitting}
                         className="w-full px-8 py-4 bg-white border border-gray-100 rounded-2xl focus:ring-2 focus:ring-[#F48A34] focus:border-transparent outline-none transition-all shadow-sm disabled:opacity-50"
@@ -250,7 +250,7 @@ export function Contact() {
                         <option>General Inquiry</option>
                       </select>
                       <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
-                        <MessageSquare className="w-5 h-5" />
+                        <ChevronDown className="w-5 h-5" />
                       </div>
                     </div>
                   </div>

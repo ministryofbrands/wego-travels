@@ -1,65 +1,128 @@
 import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, ArrowRight } from 'lucide-react';
+import { MapPin, ArrowRight, Globe, Plane } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
+import { useTravel } from '../context/TravelContext';
 
 const categories = ['All', 'Business tour', 'Group tour', 'Family tour', 'Honeymoon tour', 'Solo tour'];
 
-const destinations = [{
-  id: 'bali',
-  name: 'Bali',
-  country: 'Indonesia',
-  category: 'Honeymoon tour',
-  image: '/destination_video/video_01.mp4'
-}, {
-  id: 'thailand',
-  name: 'Phuket',
-  country: 'Thailand',
-  category: 'Family tour',
-  image: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&q=80&w=800'
-}, {
-  id: 'kerala',
-  name: 'Alleppey',
-  country: 'India',
-  category: 'Group tour',
-  image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&q=80&w=800'
-}, {
-  id: 'japan',
-  name: 'Kyoto',
-  country: 'Japan',
-  category: 'Solo tour',
-  image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&q=80&w=800'
-}, {
-  id: 'italy',
-  name: 'Amalfi Coast',
-  country: 'Italy',
-  category: 'Honeymoon tour',
-  image: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=800'
-}, {
-  id: 'maldives',
-  name: 'Malé Atoll',
-  country: 'Maldives',
-  category: 'Honeymoon tour',
-  image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&q=80&w=800'
-}, {
-  id: 'switzerland',
-  name: 'Interlaken',
-  country: 'Switzerland',
-  category: 'Business tour',
-  image: 'https://images.unsplash.com/photo-1517203649514-6014ca925b6a?auto=format&fit=crop&q=80&w=800'
-}, {
-  id: 'france',
-  name: 'Paris',
-  country: 'France',
-  category: 'Solo tour',
-  image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=800'
-}, {
-  id: 'egypt',
-  name: 'Cairo',
-  country: 'Egypt',
-  category: 'Group tour',
-  image: 'https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&q=80&w=800'
-}];
+const destinations = [
+  // Inbound (Sri Lanka)
+  {
+    id: 'ella',
+    name: 'Ella',
+    country: 'Sri Lanka',
+    category: 'Solo tour',
+    type: 'Inbound',
+    image: 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&q=80&w=800'
+  },
+  {
+    id: 'sigiriya',
+    name: 'Sigiriya',
+    country: 'Sri Lanka',
+    category: 'Family tour',
+    type: 'Inbound',
+    image: 'https://images.unsplash.com/photo-1588598116719-c8ad9846a14b?auto=format&fit=crop&q=80&w=800'
+  },
+  {
+    id: 'galle',
+    name: 'Galle Fort',
+    country: 'Sri Lanka',
+    category: 'Honeymoon tour',
+    type: 'Inbound',
+    image: 'https://images.unsplash.com/photo-1627664819818-e147d6221422?auto=format&fit=crop&q=80&w=800'
+  },
+  {
+    id: 'kandy',
+    name: 'Kandy',
+    country: 'Sri Lanka',
+    category: 'Group tour',
+    type: 'Inbound',
+    image: 'https://images.unsplash.com/photo-1555541624-954f9a7732d2?auto=format&fit=crop&q=80&w=800'
+  },
+  {
+    id: 'mirissa',
+    name: 'Mirissa',
+    country: 'Sri Lanka',
+    category: 'Honeymoon tour',
+    type: 'Inbound',
+    image: 'https://images.unsplash.com/photo-1579294246064-f63ec25ba5c4?auto=format&fit=crop&q=80&w=800'
+  },
+  {
+    id: 'nuwara-eliya',
+    name: 'Nuwara Eliya',
+    country: 'Sri Lanka',
+    category: 'Family tour',
+    type: 'Inbound',
+    image: 'https://images.unsplash.com/photo-1560242374-f239088fd463?auto=format&fit=crop&q=80&w=800'
+  },
+
+  // Outbound (International)
+  {
+    id: 'bali',
+    name: 'Bali',
+    country: 'Indonesia',
+    category: 'Honeymoon tour',
+    type: 'Outbound',
+    image: '/destination_video/video_01.mp4'
+  }, {
+    id: 'thailand',
+    name: 'Phuket',
+    country: 'Thailand',
+    category: 'Family tour',
+    type: 'Outbound',
+    image: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&q=80&w=800'
+  }, {
+    id: 'kerala',
+    name: 'Alleppey',
+    country: 'India',
+    category: 'Group tour',
+    type: 'Outbound',
+    image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&q=80&w=800'
+  }, {
+    id: 'japan',
+    name: 'Kyoto',
+    country: 'Japan',
+    category: 'Solo tour',
+    type: 'Outbound',
+    image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&q=80&w=800'
+  }, {
+    id: 'italy',
+    name: 'Amalfi Coast',
+    country: 'Italy',
+    category: 'Honeymoon tour',
+    type: 'Outbound',
+    image: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=800'
+  }, {
+    id: 'maldives',
+    name: 'Malé Atoll',
+    country: 'Maldives',
+    category: 'Honeymoon tour',
+    type: 'Outbound',
+    image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&q=80&w=800'
+  }, {
+    id: 'switzerland',
+    name: 'Interlaken',
+    country: 'Switzerland',
+    category: 'Business tour',
+    type: 'Outbound',
+    image: 'https://images.unsplash.com/photo-1517203649514-6014ca925b6a?auto=format&fit=crop&q=80&w=800'
+  }, {
+    id: 'france',
+    name: 'Paris',
+    country: 'France',
+    category: 'Solo tour',
+    type: 'Outbound',
+    image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=800'
+  }, {
+    id: 'egypt',
+    name: 'Cairo',
+    country: 'Egypt',
+    category: 'Group tour',
+    type: 'Outbound',
+    image: 'https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&q=80&w=800'
+  }
+];
 
 // Fade In Section Component
 const FadeInSection = ({ children }: { children: React.ReactNode }) => {
@@ -79,6 +142,7 @@ const FadeInSection = ({ children }: { children: React.ReactNode }) => {
 };
 
 export function Destinations() {
+  const { travelType, setTravelType } = useTravel();
   const [visibleCount, setVisibleCount] = useState(6);
   const [selectedCategory, setSelectedCategory] = useState('All');
 
@@ -86,9 +150,10 @@ export function Destinations() {
     setVisibleCount(destinations.length);
   };
 
-  const filteredDestinations = selectedCategory === 'All'
-    ? destinations
-    : destinations.filter(dest => dest.category === selectedCategory);
+  const filteredDestinations = destinations.filter(dest => {
+    const matchesCategory = selectedCategory === 'All' || dest.category === selectedCategory;
+    return dest.type === travelType && matchesCategory;
+  });
 
   return (
     <div className="bg-white overflow-x-hidden">
@@ -131,7 +196,7 @@ export function Destinations() {
       <section className="py-24 bg-gray-50 min-h-[60vh] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <FadeInSection>
-            <div className="relative mb-24 text-center">
+            <div className="relative mb-8 text-center">
               <span
                 className="text-8xl md:text-9xl font-black text-white absolute -top-16 left-1/2 -translate-x-1/2 z-0 select-none hidden lg:block uppercase tracking-[0.2em]"
                 style={{ WebkitTextStroke: '2px #e2e8f0', color: 'rgba(241, 245, 249, 0.5)' }}
@@ -150,7 +215,34 @@ export function Destinations() {
                     Next Journey.
                   </span>
                 </h2>
-                <p className="text-lg md:text-xl text-gray-500 mt-8 font-light max-w-2xl mx-auto leading-relaxed mb-12">
+
+                {/* Travel Type Switcher - Desktop Only */}
+                <div className="hidden lg:flex justify-center mt-10 mb-10">
+                  <div className="inline-flex bg-white p-1 rounded-full border border-gray-100 shadow-xl">
+                    <button
+                      onClick={() => setTravelType('Inbound')}
+                      className={`flex items-center gap-2.5 px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-300 ${travelType === 'Inbound'
+                        ? 'bg-orange-500 text-white shadow-lg'
+                        : 'text-gray-400 hover:text-orange-500 hover:bg-orange-50'
+                        }`}
+                    >
+                      <Globe size={14} />
+                      Sri Lanka
+                    </button>
+                    <button
+                      onClick={() => setTravelType('Outbound')}
+                      className={`flex items-center gap-2.5 px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-300 ${travelType === 'Outbound'
+                        ? 'bg-blue-600 text-white shadow-lg'
+                        : 'text-gray-400 hover:text-blue-600 hover:bg-blue-50'
+                        }`}
+                    >
+                      <Plane size={14} />
+                      Global
+                    </button>
+                  </div>
+                </div>
+
+                <p className="text-lg md:text-xl text-gray-500 lg:mt-0 font-light max-w-2xl mx-auto leading-relaxed mb-12">
                   From tropical paradises to historic cities, discover the perfect getaway for your next adventure.
                 </p>
               </div>

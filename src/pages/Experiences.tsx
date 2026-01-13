@@ -9,6 +9,7 @@ import {
   Users,
   X
 } from 'lucide-react';
+import { useTravel } from '../context/TravelContext';
 
 // Fade In Section Component
 const FadeInSection = ({ children }: { children: React.ReactNode }) => {
@@ -26,12 +27,14 @@ const FadeInSection = ({ children }: { children: React.ReactNode }) => {
 
 // --- DATA ---
 const EXPERIENCES = [
+  // Outbound
   {
     id: 1,
     title: "Serenity in the Backwaters",
     destination: "Kerala, India",
     year: 2023,
     type: "Family",
+    travelType: "Outbound",
     story: "Waking up to the gentle lapping of water against our houseboat was a dream. Wego made sure every sunrise was as perfect as the last.",
     rating: 5,
     image: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&q=80&w=1000",
@@ -44,6 +47,7 @@ const EXPERIENCES = [
     destination: "Swiss Alps",
     year: 2023,
     type: "Adventure",
+    travelType: "Outbound",
     story: "Scaling the peaks of the Jungfrau region was a life-changing challenge. The expert guides and seamless logistics made it possible.",
     rating: 5,
     image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1000",
@@ -56,18 +60,61 @@ const EXPERIENCES = [
     destination: "Tokyo, Japan",
     year: 2022,
     type: "Cultural",
+    travelType: "Outbound",
     story: "From Tsukiji's morning rush to the quiet shrines of Kyoto, this journey captured the beautiful contrast of Japan.",
     rating: 5,
     image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&q=80&w=1000",
     videoPreview: "https://assets.mixkit.co/videos/preview/mixkit-tokyo-street-at-night-with-neon-lights-and-people-4436-large.mp4",
     highlights: ["Tea Ceremony", "Private Chef Tour", "Bullet Train Suite"]
   },
+  // Inbound (Sri Lanka)
+  {
+    id: 10,
+    title: "Misty Mornings in Ella",
+    destination: "Ella, Sri Lanka",
+    year: 2024,
+    type: "Adventure",
+    travelType: "Inbound",
+    story: "Walking across the Nine Arch Bridge as the mist rolled in was mystical. Wego's local insights made this more than just a trip—it was a discovery.",
+    rating: 5,
+    image: "https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&q=80&w=1000",
+    videoPreview: "https://assets.mixkit.co/videos/preview/mixkit-train-crossing-a-bridge-in-the-mountains-4434-large.mp4",
+    highlights: ["Nine Arch Bridge", "Little Adam's Peak", "Tea Factory Tour"]
+  },
+  {
+    id: 11,
+    title: "Ancient Echoes",
+    destination: "Sigiriya, Sri Lanka",
+    year: 2023,
+    type: "Cultural",
+    travelType: "Inbound",
+    story: "The climb to the top of Sigiriya Rock was challenging but the reward was a view that felt like it belonged to another world. Truly a royal experience.",
+    rating: 5,
+    image: "https://images.unsplash.com/photo-1581347692120-f56f34f64d2d?auto=format&fit=crop&q=80&w=1000",
+    videoPreview: "https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-large-rock-fortress-15823-large.mp4",
+    highlights: ["Lion Rock Ascent", "Mirror Wall", "Royal Gardens"]
+  },
+  {
+    id: 12,
+    title: "Coastal Bliss in Galle",
+    destination: "Galle, Sri Lanka",
+    year: 2023,
+    type: "Romantic",
+    travelType: "Inbound",
+    story: "The colonial charm of Galle Fort mixed with the Indian Ocean breeze created the perfect setting for our anniversary. Unparalleled elegance.",
+    rating: 5,
+    image: "https://images.unsplash.com/photo-1627664819818-e147d6221422?auto=format&fit=crop&q=80&w=1000",
+    videoPreview: "https://assets.mixkit.co/videos/preview/mixkit-waves-crashing-against-a-rocky-shore-1102-large.mp4",
+    highlights: ["Fort Sunset Walk", "Luxury Boutique Stay", "Whale Watching"]
+  },
+  // Rest of Outbound
   {
     id: 4,
     title: "Safari Magic",
     destination: "Maasai Mara, Kenya",
     year: 2023,
     type: "Adventure",
+    travelType: "Outbound",
     story: "Witnessing the Great Migration was a powerful reminder of nature’s raw beauty. The camp stay was luxury defined.",
     rating: 5,
     image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=1000",
@@ -80,6 +127,7 @@ const EXPERIENCES = [
     destination: "Santorini, Greece",
     year: 2022,
     type: "Romantic",
+    travelType: "Outbound",
     story: "Sunsets that linger in your soul. Wego curated a romantic escape that surpassed all our expectations.",
     rating: 5,
     image: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&q=80&w=1000",
@@ -92,6 +140,7 @@ const EXPERIENCES = [
     destination: "Iceland",
     year: 2023,
     type: "Adventure",
+    travelType: "Outbound",
     story: "Chasing the Northern Lights across icy landscapes was surreal. Wego's planning ensured we were always at the right spot.",
     rating: 5,
     image: "https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&q=80&w=1000",
@@ -104,6 +153,7 @@ const EXPERIENCES = [
     destination: "Marrakech, Morocco",
     year: 2023,
     type: "Cultural",
+    travelType: "Outbound",
     story: "Lost in the labyrinth of the Medina, we found magic in every corner. The spices, the colors, and the hospitality were unforgettable.",
     rating: 5,
     image: "https://images.unsplash.com/photo-1597212618440-806262de4fa6?auto=format&fit=crop&q=80&w=1000",
@@ -116,6 +166,7 @@ const EXPERIENCES = [
     destination: "Uluru, Australia",
     year: 2023,
     type: "Adventure",
+    travelType: "Outbound",
     story: "Watching the stars over Uluru was a spiritual experience. The vastness of the outback is something you have to feel to believe.",
     rating: 5,
     image: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&q=80&w=1000",
@@ -128,6 +179,7 @@ const EXPERIENCES = [
     destination: "Paris, France",
     year: 2022,
     type: "Romantic",
+    travelType: "Outbound",
     story: "Midnight strolls along the Seine and private museum tours. Wego turned our anniversary into a masterpiece.",
     rating: 5,
     image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=1000",
@@ -158,6 +210,7 @@ const TESTIMONIALS = [
 ];
 
 export function Experiences() {
+  const { travelType } = useTravel();
   const [filter, setFilter] = useState({ destination: 'All', type: 'All', year: 'All' });
   const [selectedExperience, setSelectedExperience] = useState<any | null>(null);
   const [visibleCount, setVisibleCount] = useState(6);
@@ -179,10 +232,11 @@ export function Experiences() {
   const containerRef = useRef(null);
 
   const filteredExperiences = EXPERIENCES.filter(exp => {
+    const matchTravelType = exp.travelType === travelType;
     const matchDest = filter.destination === 'All' || exp.destination.includes(filter.destination);
     const matchType = filter.type === 'All' || exp.type === filter.type;
     const matchYear = filter.year === 'All' || exp.year.toString() === filter.year;
-    return matchDest && matchType && matchYear;
+    return matchTravelType && matchDest && matchType && matchYear;
   });
 
   const displayedExperiences = filteredExperiences.slice(0, visibleCount);
@@ -192,9 +246,10 @@ export function Experiences() {
     setVisibleCount(prev => prev + 6);
   };
 
-  const uniqueDestinations = ['All', ...new Set(EXPERIENCES.map(e => e.destination.split(', ')[1] || e.destination))];
-  const uniqueTypes = ['All', ...new Set(EXPERIENCES.map(e => e.type))];
-  const uniqueYears = ['All', ...new Set(EXPERIENCES.map(e => e.year.toString()))];
+  const filteredForOptions = EXPERIENCES.filter(e => e.travelType === travelType);
+  const uniqueDestinations = ['All', ...new Set(filteredForOptions.map(e => e.destination.split(', ')[1] || e.destination))];
+  const uniqueTypes = ['All', ...new Set(filteredForOptions.map(e => e.type))];
+  const uniqueYears = ['All', ...new Set(filteredForOptions.map(e => e.year.toString()))];
 
   return (
     <div className="bg-white overflow-x-hidden" ref={containerRef}>
