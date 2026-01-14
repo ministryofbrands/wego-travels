@@ -228,12 +228,53 @@ export function WelcomeSplash({ onComplete, showSelection: showSelectionProp = f
                         {/* Floating Center Brand */}
                         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none hidden md:block">
                             <motion.div
-                                initial={{ scale: 0, opacity: 0, rotate: -45 }}
-                                animate={{ scale: 1, opacity: 1, rotate: 0 }}
-                                transition={{ delay: 1, type: "spring", stiffness: 100, damping: 15 }}
-                                className="h-28 w-28 bg-black/60 backdrop-blur-3xl rounded-full border border-white/10 p-5 shadow-2xl"
+                                initial={{ scale: 0, opacity: 0, rotate: -45, backgroundColor: "#000000" }}
+                                animate={{
+                                    scale: 1,
+                                    opacity: 1,
+                                    rotate: 0,
+                                    backgroundColor: ["#000000", "#ffffff"],
+                                    boxShadow: ["0 0 0px rgba(0,0,0,0)", "0 0 40px rgba(59, 130, 246, 0.6), 0 0 80px rgba(249, 115, 22, 0.6)"]
+                                }}
+                                transition={{
+                                    scale: { delay: 1, type: "spring", stiffness: 100, damping: 15 },
+                                    opacity: { delay: 1, duration: 0.5 },
+                                    rotate: { delay: 1, duration: 0.8, ease: "backOut" },
+                                    backgroundColor: { delay: 2, duration: 0.8, ease: "easeInOut" },
+                                    boxShadow: { delay: 2.5, duration: 1.5, repeat: Infinity, repeatType: "reverse" }
+                                }}
+                                className="h-28 w-28 rounded-full border border-white/10 p-5 shadow-2xl relative overflow-hidden flex items-center justify-center"
                             >
-                                <img src="/logo/76293549293501.png" alt="Wego" className="h-full w-full object-contain filter brightness-125" />
+                                {/* Rotating Light Line */}
+                                <svg className="absolute inset-0 w-full h-full pointer-events-none">
+                                    <motion.circle
+                                        cx="50%"
+                                        cy="50%"
+                                        r="48%"
+                                        fill="none"
+                                        stroke="url(#gradient-line)"
+                                        strokeWidth="8"
+                                        strokeLinecap="round"
+                                        initial={{ pathLength: 0, rotate: 0 }}
+                                        animate={{
+                                            pathLength: [0, 0.4, 0.4, 0],
+                                            rotate: 360
+                                        }}
+                                        transition={{
+                                            pathLength: { delay: 1.5, duration: 2, times: [0, 0.4, 0.6, 1], repeat: Infinity, repeatDelay: 0.5 },
+                                            rotate: { delay: 1.5, duration: 3, ease: "linear", repeat: Infinity }
+                                        }}
+                                    />
+                                    <defs>
+                                        <linearGradient id="gradient-line" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stopColor="#3b82f6" />
+                                            <stop offset="50%" stopColor="#ffffff" />
+                                            <stop offset="100%" stopColor="#f97316" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+
+                                <img src="/logo/76293549293501.png" alt="Wego" className="h-full w-full object-contain filter brightness-125 z-10" />
                             </motion.div>
                         </div>
                     </motion.div>

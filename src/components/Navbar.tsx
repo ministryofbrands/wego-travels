@@ -67,7 +67,7 @@ export function Navbar() {
                 <img
                   src="/logo/76293549293501.png"
                   alt="Wego Travels Logo"
-                  className="h-10 md:h-14 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                  className="h-16 md:h-20 w-auto object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-[0_0_28px_rgba(255,255,255,0.6)]"
                 />
                 <span className={`text-2xl font-bold tracking-tighter ${textColor}`}>
                   Wego<span className="text-orange-500">Travels</span>

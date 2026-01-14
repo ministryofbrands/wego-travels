@@ -13,7 +13,7 @@ export function Footer() {
                             <img
                                 src="/logo/76293549293501.png"
                                 alt="Wego Travels Logo"
-                                className="h-20 w-auto object-contain hover:scale-105 transition-transform duration-300"
+                                className="h-30 w-auto object-contain hover:scale-105 transition-transform duration-300"
                             />
                         </Link>
                         <p className="text-gray-400 text-sm leading-relaxed">
