@@ -3,13 +3,15 @@ import { Link } from 'react-router-dom';
 import {
   Briefcase,
   Ticket,
-  Map,
   CalendarCheck,
   MessageSquare,
   CheckCircle2,
   ArrowRight,
   ChevronDown,
-  HelpCircle
+  HelpCircle,
+  Globe,
+  FileCheck,
+  Plane
 } from 'lucide-react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 
@@ -32,32 +34,32 @@ const FadeInSection = ({ children }: { children: React.ReactNode }) => {
 
 const services = [
   {
-    id: 'business',
-    Icon: Briefcase,
-    title: 'Business Tours',
-    description: 'Executive travel solutions designed for efficiency and comfort. From corporate retreats to conference logistics, we handle the details so you can focus on business.',
-    features: ['Corporate Retreats', 'MICE Management', 'Executive Transport']
-  },
-  {
-    id: 'trips',
-    Icon: Map,
-    title: 'Trips',
-    description: 'Whether it\'s an adventurous solo expedition or a romantic honeymoon, our curated trips offer unique experiences that create lifelong memories.',
-    features: ['Adventure Tours', 'Honeymoon Specials', 'Cultural Excursions']
-  },
-  {
-    id: 'packages',
-    Icon: CalendarCheck,
-    title: 'Packages',
-    description: 'All-inclusive holiday packages that take the stress out of planning. Enjoy carefully crafted itineraries that blend relaxation with exploration.',
-    features: ['Family Holidays', 'Seasonal Specials', 'Custom Itineraries']
+    id: 'travels',
+    Icon: Globe,
+    title: 'Travel',
+    description: 'Travel Consultation: Expert guidance to plan your perfect journey. We help you choose destinations, create itineraries, and ensure every detail matches your travel dreams.',
+    features: ['Personalized Itineraries', 'Destination Advice', 'Budget Planning']
   },
   {
     id: 'tickets',
     Icon: Ticket,
-    title: 'Ticket Booking',
-    description: 'Seamless booking services for flights, trains, and attractions. We ensure you get the best connections and competitive rates globally.',
+    title: 'Ticket',
+    description: 'Ticket Booking: Seamless booking services for flights, trains, and attractions. We ensure you get the best connections and competitive rates globally.',
     features: ['Flight Reservations', 'Train & Rail', 'Attraction Passes']
+  },
+  {
+    id: 'visa',
+    Icon: FileCheck,
+    title: 'Visa',
+    description: 'Visa Consultation: Navigate complex visa requirements with ease. Our experts handle the paperwork and guidance to ensure successful visa applications for any country.',
+    features: ['Application Assistance', 'Document Verification', 'Interview Prep']
+  },
+  {
+    id: 'business',
+    Icon: Briefcase,
+    title: 'Business',
+    description: 'Business Tours: Executive travel solutions designed for efficiency and comfort. From corporate retreats to conference logistics, we handle the details so you can focus on business.',
+    features: ['Corporate Retreats', 'MICE Management', 'Executive Transport']
   }
 ];
 
@@ -76,6 +78,11 @@ const processSteps = [
     Icon: CheckCircle2,
     title: 'Booking',
     description: 'Secure your schedule with instant confirmations and comprehensive support.'
+  },
+  {
+    Icon: Plane,
+    title: 'Traveling',
+    description: 'Embark on your journey with confidence, knowing we are with you every step of the way.'
   }
 ];
 
@@ -208,20 +215,24 @@ export function Services() {
             </div>
           </FadeInSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 relative">
-            {/* Connecting Line (Desktop & Tablet) */}
-            <div className="hidden md:block absolute top-12 md:left-[25%] md:right-[58%] lg:left-[20%] lg:right-[56%] h-[3px] bg-white/30 -z-0" />
-            <div className="hidden md:block absolute top-12 md:left-[58%] md:right-[25%] lg:left-[56%] lg:right-[20%] h-[3px] bg-white/30 -z-0" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+            {/* Connecting Lines (Desktop & Tablet) - Adjusted for 4 columns */}
+            {/* Line 1: Between 1st and 2nd */}
+            <div className="hidden lg:block absolute top-10 left-[12.5%] right-[62.5%] h-[2px] bg-white/30 -z-0" />
+            {/* Line 2: Between 2nd and 3rd */}
+            <div className="hidden lg:block absolute top-10 left-[37.5%] right-[37.5%] h-[2px] bg-white/30 -z-0" />
+            {/* Line 3: Between 3rd and 4th */}
+            <div className="hidden lg:block absolute top-10 left-[62.5%] right-[12.5%] h-[2px] bg-white/30 -z-0" />
 
             {processSteps.map((step) => (
               <FadeInSection key={step.title}>
                 <div className="flex flex-col items-center text-center group">
-                  <div className="w-24 h-24 bg-[#F48A34] rounded-full flex items-center justify-center shadow-2xl mb-8 relative z-10 border-4 border-blue-900 group-hover:scale-110 transition-transform duration-300">
-                    <step.Icon className="w-10 h-10 text-white" />
+                  <div className="w-20 h-20 bg-[#F48A34] rounded-full flex items-center justify-center shadow-2xl mb-6 relative z-10 border-4 border-blue-900 group-hover:scale-110 transition-transform duration-300">
+                    <step.Icon className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4 uppercase tracking-wider">{step.title}</h3>
+                  <h3 className="text-xl font-bold text-white mb-3 uppercase tracking-wider">{step.title}</h3>
                   <div className="h-[2px] w-12 bg-orange-400 mb-4 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <p className="text-blue-100 text-lg font-light leading-relaxed">
+                  <p className="text-blue-100 text-base font-light leading-relaxed">
                     {step.description}
                   </p>
                 </div>

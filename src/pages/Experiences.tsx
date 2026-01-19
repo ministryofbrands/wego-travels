@@ -190,22 +190,24 @@ const EXPERIENCES = [
 
 const TESTIMONIALS = [
   {
-    name: "Benjamin Graham",
-    role: "CEO, TechSphere",
-    text: "The business retreat organized by Wego was flawless. Their ability to balance work logistics with premium relaxation is unmatched.",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200"
+    name: "Ushantha Amarasinghe",
+    text: "Friendly staff and quick service—highly recommended!",
+    image: '/services/client03.jpg'
   },
   {
-    name: "Elena Rodriguez",
-    role: "Travel Photographer",
-    text: "They don't just find destinations; they find viewpoints. As a photographer, the access they provided was a game-changer.",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=200"
+    name: "Pradeep Kumara",
+    text: "A wonderful ticketing office—friendly staff, quick service, and a pleasant experience overall.",
+    image: '/services/client02.jpg'
   },
   {
-    name: "The Miller Family",
-    role: "Global Explorers",
-    text: "Our family holidays used to be stressful. With Wego, they are purely about connection and discovery. Simply the best.",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200"
+    name: "Shekeeth Kumar",
+    text: "Excellent ticketing office with very friendly staff and fast, reliable service.",
+    image: '/services/client04.jpg'
+  },
+  {
+    name: "Sachindu D Perera",
+    text: "A great ticketing office with friendly staff and quick, efficient service.",
+    image: '/services/client01.jpg'
   }
 ];
 
@@ -492,7 +494,6 @@ export function Experiences() {
                     />
                     <div>
                       <h4 className="text-blue-900 font-bold text-lg">{t.name}</h4>
-                      <p className="text-[#0167B2] text-xs font-semibold tracking-wider uppercase">{t.role}</p>
                     </div>
                   </div>
                   <p className="text-gray-700 text-lg leading-relaxed italic font-light flex-grow">

@@ -692,12 +692,7 @@ export function DestinationDetail() {
                           </div>
                           <h3 className="text-xl sm:text-2xl md:text-2xl lg:text-4xl font-bold text-blue-900 leading-tight">{pkg.name}</h3>
                         </div>
-                        <div className="text-left lg:text-right shrink-0">
-                          <p className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-orange-400 leading-none mb-1">
-                            {pkg.price}
-                          </p>
-                          <p className="text-gray-400 text-[10px] md:text-xs font-bold uppercase tracking-widest">Fixed Price</p>
-                        </div>
+
                       </div>
 
                       <p className="text-sm sm:text-base md:text-base lg:text-xl text-gray-500 font-light mb-6 md:mb-8 leading-relaxed line-clamp-3 lg:line-clamp-none">

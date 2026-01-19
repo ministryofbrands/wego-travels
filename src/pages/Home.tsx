@@ -8,7 +8,7 @@ const homeSlides: (SlideData & { type: 'Inbound' | 'Outbound' })[] = [
   // Outbound
   {
     id: 'yiwu',
-    title: 'Yiwu Market',
+    title: 'China Tour',
     subtitle: 'China',
     type: 'Outbound',
     description: 'Discover the world’s largest wholesale market in Yiwu, China. With thousands of suppliers and endless product varieties, Yiwu International Trade Market is a global hub for sourcing, trading, and business opportunities.',

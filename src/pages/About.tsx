@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Award, Globe, Clock, CheckCircle2, ArrowRight, Palette } from 'lucide-react';
+import { MapPin, Award, Globe, Clock, CheckCircle2, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useInView, useSpring, useMotionValue, motion } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
@@ -149,7 +149,7 @@ export function About() {
               { number: "50+", label: "Global Destinations" },
               { number: "10k+", label: "Happy Travelers" },
               { number: "150+", label: "Partner Hotels" },
-              { number: "12", label: "Years of Excellence" }
+              { number: "4", label: "Years of Excellence" }
             ].map((stat, idx) => (
               <div key={idx} className="flex flex-col items-center justify-center p-6 rounded-xl lg:rounded-none">
                 <StatCounter value={stat.number} label={stat.label} />

@@ -138,21 +138,21 @@ export function Contact() {
                 {
                   icon: Phone,
                   title: 'Call Us',
-                  details: ['+1 (555) 123-4567', '+1 (555) 987-6543'],
+                  details: ['+94 77 455 4556', '+94 77 6224546'],
                   color: 'bg-blue-50',
                   iconColor: 'text-blue-600'
                 },
                 {
                   icon: Mail,
                   title: 'Email Us',
-                  details: ['hello@wegotravels.com', 'support@wegotravels.com'],
+                  details: ['wegotravelss@gmail.com'],
                   color: 'bg-orange-50',
                   iconColor: 'text-orange-600'
                 },
                 {
                   icon: MapPin,
                   title: 'Visit Us',
-                  details: ['123 Adventure Lane, Suite 400', 'Travel City, TC 90210'],
+                  details: ['No.151, Gettuwana Junction, Kandy road, Kurunagala , Sri Lanka'],
                   color: 'bg-green-50',
                   iconColor: 'text-green-600'
                 }
@@ -292,34 +292,15 @@ export function Contact() {
 
             {/* Additional Info & Map */}
             <div className="space-y-16">
-              <FadeInSection>
-                <div>
-                  <h3 className="text-3xl font-bold text-blue-900 mb-8 flex items-center gap-4">
-                    <Clock className="text-[#F48A34]" /> Our Schedule
-                  </h3>
-                  <div className="space-y-4">
-                    {[
-                      { days: 'Monday - Friday', time: '09:00 AM - 08:00 PM' },
-                      { days: 'Saturday', time: '10:00 AM - 04:00 PM' },
-                      { days: 'Sunday', time: 'Closed' }
-                    ].map((item, i) => (
-                      <div key={i} className="flex justify-between items-center p-6 border border-gray-100 rounded-2xl hover:bg-gray-50 transition-colors">
-                        <span className="font-bold text-gray-900">{item.days}</span>
-                        <span className="text-gray-500 font-light">{item.time}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </FadeInSection>
 
               <FadeInSection>
                 <div className="relative">
                   <h3 className="text-3xl font-bold text-blue-900 mb-8 flex items-center gap-4">
                     <Globe className="text-[#F48A34]" /> Find Us
                   </h3>
-                  <div className="rounded-[2.5rem] overflow-hidden shadow-2xl h-[400px] border-8 border-white">
+                  <div className="rounded-[2.5rem] overflow-hidden shadow-2xl h-[680px] border-8 border-white">
                     <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.25280821814!2d-74.11976373993144!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1642100000000!5m2!1sen!2s"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.8764127901304!2d80.373378!3d7.478897099999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae3390077ecc86f%3A0xb96f4232c480dd3d!2sWEGO%20TRAVELS!5e0!3m2!1sen!2slk!4v1768811165364!5m2!1sen!2slk"
                       width="100%"
                       height="100%"
                       style={{ border: 0 }}
