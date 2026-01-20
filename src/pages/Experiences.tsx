@@ -77,7 +77,7 @@ const EXPERIENCES = [
     travelType: "Inbound",
     story: "Walking across the Nine Arch Bridge as the mist rolled in was mystical. Wego's local insights made this more than just a trip—it was a discovery.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&q=80&w=1000",
+    image: "https://images.unsplash.com/photo-1627664819818-e147d6221422?auto=format&fit=crop&q=80&w=1000",
     videoPreview: "https://assets.mixkit.co/videos/preview/mixkit-train-crossing-a-bridge-in-the-mountains-4434-large.mp4",
     highlights: ["Nine Arch Bridge", "Little Adam's Peak", "Tea Factory Tour"]
   },
@@ -90,7 +90,7 @@ const EXPERIENCES = [
     travelType: "Inbound",
     story: "The climb to the top of Sigiriya Rock was challenging but the reward was a view that felt like it belonged to another world. Truly a royal experience.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1581347692120-f56f34f64d2d?auto=format&fit=crop&q=80&w=1000",
+    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1000",
     videoPreview: "https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-large-rock-fortress-15823-large.mp4",
     highlights: ["Lion Rock Ascent", "Mirror Wall", "Royal Gardens"]
   },
@@ -156,7 +156,7 @@ const EXPERIENCES = [
     travelType: "Outbound",
     story: "Lost in the labyrinth of the Medina, we found magic in every corner. The spices, the colors, and the hospitality were unforgettable.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1597212618440-806262de4fa6?auto=format&fit=crop&q=80&w=1000",
+    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1000",
     videoPreview: "https://assets.mixkit.co/videos/preview/mixkit-narrow-street-of-a-typical-mediterranean-village-4432-large.mp4",
     highlights: ["Medina Tour", "Riad Stay", "Atlas Mountains"]
   },

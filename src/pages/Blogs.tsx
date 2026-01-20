@@ -46,7 +46,7 @@ const BLOG_POSTS = [
     date: "Dec 10, 2023",
     readTime: "6 min read",
     author: "David Chen",
-    image: "https://images.unsplash.com/photo-1542601906990-b4d3fb45ed09?auto=format&fit=crop&q=80&w=1000",
+    image: "https://images.unsplash.com/photo-1531310197839-ccf54634509e?auto=format&fit=crop&q=80&w=1000",
     excerpt: "Traveling the world doesn't have to cost the earth. Learn practical steps to become a more conscious explorer.",
     content: "As travel becomes more accessible, the impact on our planet grows. But it's possible to see the world while also protecting it. Sustainable travel is about making small, intentional choices that collective make a big difference.\n\nChoose eco-friendly accommodations that use renewable energy. Support local economies by eating at family-run restaurants and buying handmade crafts. Most importantly, respect the nature and wildlife you encounter. Take only photos, leave only footprints.",
     tags: ["Sustainability", "Eco-Friendly", "Nature"]
@@ -106,7 +106,7 @@ const BLOG_POSTS = [
     date: "Nov 05, 2023",
     readTime: "12 min read",
     author: "Erik Jansson",
-    image: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&q=80&w=1000",
+    image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=1000",
     excerpt: "From the aurora borealis to cozy 'hygge' moments, discover why winter is the best time to visit the North.",
     content: "The Nordic countries transform into a winter wonderland during the colder months. While the days are short, the atmosphere is magical. We explore the best spots in Norway and Sweden for catching the Northern Lights, as well as the urban charms of Oslo and Stockholm.\n\nDon't let the cold stop you. With the right gear and a spirit of adventure, Nordic winters offer some of the most serene and beautiful experiences on the planet.",
     tags: ["Norway", "Winter", "Northern Lights"]
@@ -118,7 +118,7 @@ const BLOG_POSTS = [
     date: "Oct 28, 2023",
     readTime: "7 min read",
     author: "Somchai S.",
-    image: "https://images.unsplash.com/photo-1562601579-599bc564e147?auto=format&fit=crop&q=80&w=1000",
+    image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=1000",
     excerpt: "A culinary journey through the vibrant streets of Bangkok. Where to find the best Pad Thai and Mango Sticky Rice.",
     content: "Bangkok is a city that never stops eating. From the bustling lanes of Chinatown to the modern stalls of Ari, the street food scene is legendary. We've rounded up the must-visit stalls that have stood the test of time.\n\nWhether you're looking for the spiciest Tom Yum or the sweetest mango sticky rice, Bangkok's vendors have you covered. It's not just about the food; it's about the energy of the city that brings these flavors to life.",
     tags: ["Thailand", "Food", "Culture"]

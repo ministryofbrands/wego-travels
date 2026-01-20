@@ -14,7 +14,7 @@ const destinations = [
     country: 'Sri Lanka',
     category: 'Solo tour',
     type: 'Inbound',
-    image: 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&q=80&w=800'
+    image: '/home_images/home_image_06.jpg',
   },
   {
     id: 'sigiriya',
@@ -22,7 +22,7 @@ const destinations = [
     country: 'Sri Lanka',
     category: 'Family tour',
     type: 'Inbound',
-    image: 'https://images.unsplash.com/photo-1588598116719-c8ad9846a14b?auto=format&fit=crop&q=80&w=800'
+    image: '/home_images/sigiriya.jpeg',
   },
   {
     id: 'galle',
@@ -30,7 +30,7 @@ const destinations = [
     country: 'Sri Lanka',
     category: 'Honeymoon tour',
     type: 'Inbound',
-    image: 'https://images.unsplash.com/photo-1627664819818-e147d6221422?auto=format&fit=crop&q=80&w=800'
+    image: '/home_images/home_image_07.jpg'
   },
   {
     id: 'kandy',
@@ -38,7 +38,7 @@ const destinations = [
     country: 'Sri Lanka',
     category: 'Group tour',
     type: 'Inbound',
-    image: 'https://images.unsplash.com/photo-1555541624-954f9a7732d2?auto=format&fit=crop&q=80&w=800'
+    image: '/home_images/home_image_08.jpg'
   },
   {
     id: 'mirissa',
@@ -46,7 +46,7 @@ const destinations = [
     country: 'Sri Lanka',
     category: 'Honeymoon tour',
     type: 'Inbound',
-    image: 'https://images.unsplash.com/photo-1579294246064-f63ec25ba5c4?auto=format&fit=crop&q=80&w=800'
+    image: '/home_images/home_image_07.jpg'
   },
   {
     id: 'nuwara-eliya',
@@ -54,7 +54,7 @@ const destinations = [
     country: 'Sri Lanka',
     category: 'Family tour',
     type: 'Inbound',
-    image: 'https://images.unsplash.com/photo-1560242374-f239088fd463?auto=format&fit=crop&q=80&w=800'
+    image: '/home_images/nuwaraeliya.jpg'
   },
 
   // Outbound (International)
@@ -64,7 +64,7 @@ const destinations = [
     country: 'Indonesia',
     category: 'Honeymoon tour',
     type: 'Outbound',
-    image: '/destination_video/video_01.mp4'
+    image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&q=80&w=800'
   }, {
     id: 'thailand',
     name: 'Phuket',
@@ -106,7 +106,7 @@ const destinations = [
     country: 'Switzerland',
     category: 'Business tour',
     type: 'Outbound',
-    image: 'https://images.unsplash.com/photo-1517203649514-6014ca925b6a?auto=format&fit=crop&q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1527668752968-14dc70a27c95?auto=format&fit=crop&q=80&w=800'
   }, {
     id: 'france',
     name: 'Paris',
