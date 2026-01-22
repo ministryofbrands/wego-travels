@@ -192,22 +192,22 @@ const TESTIMONIALS = [
   {
     name: "Ushantha Amarasinghe",
     text: "Friendly staff and quick service—highly recommended!",
-    image: '/services/client03.jpg'
+    image: '/clients/client03.jpg'
   },
   {
     name: "Pradeep Kumara",
     text: "A wonderful ticketing office—friendly staff, quick service, and a pleasant experience overall.",
-    image: '/services/client02.jpg'
+    image: '/clients/client02.jpg'
   },
   {
     name: "Shekeeth Kumar",
     text: "Excellent ticketing office with very friendly staff and fast, reliable service.",
-    image: '/services/client04.jpg'
+    image: '/clients/client04.jpg'
   },
   {
     name: "Sachindu D Perera",
     text: "A great ticketing office with friendly staff and quick, efficient service.",
-    image: '/services/client01.jpg'
+    image: '/clients/client01.jpg'
   }
 ];
 
